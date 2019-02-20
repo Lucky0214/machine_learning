@@ -5,6 +5,8 @@
 #print(df)
 
 
+#DataFrame is a multi dimension array
+
 import pandas as pd
 import numpy as np
 
