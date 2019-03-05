@@ -1,24 +1,34 @@
-from __future__ import division, print_function, absolute_import
+# Practice of Linear Regression
+#%matplotlib inline
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
-#TFLearn module implementation
-import tflearn
-from tflearn.estimators import RandomForestClassifier
+data = pd.read_csv("testing.csv")
+print(data)
+x = data["no."]
+y = data["roll"]
+print(x)
+print(y)
 
-# Data loading and pre-processing with respect to dataset
-import tflearn.datasets.mnist as mnist
-X, Y, testX, testY = mnist.load_data(one_hot = False)
+mean_x = np.mean(x)
+print(mean_x)
+mean_y = np.mean(y)
+ 
+n = len(x)
 
-m = RandomForestClassifier(n_estimators = 100, max_nodes = 1000)
-m.fit(X, Y, batch_size = 10000, display_step = 10)
+nume = 0
+denome = 0
+for i in range(n):
+	nume =((x[i] - mean_x)*(y[i] - mean_y))
+	print(nume)
+	demome = ((x[i] - mean_x)**2)
+	print(denome)
 
-print("Compute the accuracy on train data:")
-print(m.evaluate(X, Y, tflearn.accuracy_op))
+b1 = (nume / denome)
+b0 = (mean_y - (b1*mean_x))
 
-print("Compute the accuracy on test set:")
-print(m.evaluate(testX, testY, tflearn.accuracy_op))
+print(b1)
+print(b0)
 
-print("Digits for test images id 0 to 5:")
-print(m.predict(testX[:5]))
 
-print("True digits:")
-print(testY[:5])

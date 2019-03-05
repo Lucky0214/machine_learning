@@ -27,6 +27,8 @@ import pandas as pd
 p=pd.read_csv("school.csv")#, parse_dates=["Date","Time"])
 print(p)
 print(p.info())
+q = p["Result"]
+print(q)
 #print(p["Result"])
 #p["Result"]= (p["Result"].astype("bool"))
 #p["Date"] = (pd.to_datetime(p["Date"]))
